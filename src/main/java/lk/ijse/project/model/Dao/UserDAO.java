@@ -1,4 +1,4 @@
-package lk.ijse.project.model.dao;
+package lk.ijse.project.model.Dao;
 
 import jakarta.servlet.ServletContext;
 import lk.ijse.project.model.Entity.User;
@@ -7,6 +7,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.UUID;
 
 public class UserDAO {
     private final BasicDataSource dataSource;
@@ -16,12 +17,12 @@ public class UserDAO {
     }
 
     public boolean createUser(User user) {
-        String sql = "INSERT INTO user (id, name, email, password, role) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
         try (
                 Connection connection = dataSource.getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, String.valueOf(user.getId()));
+            pstmt.setString(1, UUID.randomUUID().toString());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPassword());
