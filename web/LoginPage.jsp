@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Sign Up</title>
+    <link rel="stylesheet" href="css/LoginPage.css">
 
 </head>
 <body>
@@ -98,6 +99,6 @@
         </form>
     </div>
 </div>
-<script src="javasript/LoginPage.js"></script>
+<script src="javascript/LoginPage.js"></script>
 </body>
 </html>
