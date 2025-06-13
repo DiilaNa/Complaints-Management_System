@@ -1,4 +1,20 @@
 package lk.ijse.project.controller;
 
-public class UserServlet {
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.project.model.Entity.User;
+
+import java.io.IOException;
+
+@WebServlet("/login")
+public class UserServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    }
+
+
 }
