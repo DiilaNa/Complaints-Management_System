@@ -8,98 +8,95 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
-    <style>
-        body {
-            height: 100%;
-            box-sizing: border-box;
-            overflow: hidden;
-            background-color: #008cff;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
 
-        .login-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 400px;
-            height: 400px;
-            padding: 40px;
-            transform: translate(-50%, -50%);
-            background: rgba(0,0,0,.5);
-            box-sizing: border-box;
-            box-shadow: 0 15px 25px rgba(0,0,0,.6);
-            border-radius: 10px;
-        }
-
-        .login-box h2 {
-            margin: 0 0 30px;
-            padding: 0;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .login-box .user-box {
-            position: relative;
-        }
-
-        .login-box .user-box input {
-            width: 100%;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            margin-bottom: 30px;
-            border: none;
-            border-bottom: 1px solid #fff;
-            outline: none;
-            background: transparent;
-        }
-        .login-box .user-box label {
-            position: absolute;
-            top:0;
-            left: 0;
-            padding: 10px 0;
-            font-size: 16px;
-            color: #fff;
-            pointer-events: none;
-            transition: .5s;
-        }
-
-        .login-box .user-box input:focus ~ label,
-        .login-box .user-box input:valid ~ label {
-            top: -20px;
-            left: 0;
-            color: #03e9f4;
-            font-size: 12px;
-        }
-
-        .login-box form a {
-            position: relative;
-            display: inline-block;
-            padding: 10px 20px;
-            color: #03e9f4;
-            font-size: 16px;
-            text-decoration: none;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition: .5s;
-            margin-top: 40px;
-            letter-spacing: 4px
-        }
-    </style>
 </head>
 <body>
-<div class="login-box">
-    <h2>Login</h2>
-    <form>
-        <div class="user-box">
-            <input type="email" name="" required="">
-            <label>Email</label>
-        </div>
-        <div class="user-box">
-            <input type="password" name="" required="">
-            <label>Password</label>
-        </div>
-    </form>
+<!-- Floating particles -->
+<div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+<div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+<div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+<div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+<div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+<div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+<div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+<div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+<div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+
+<div class="container">
+    <div class="message" id="message"></div>
+
+    <div class="form-container">
+        <!-- Login Form -->
+        <form class="form active" id="loginForm">
+            <h2>Welcome Back</h2>
+            <div class="form-group">
+                <input type="email" id="loginEmail" required>
+                <label>Email Address</label>
+            </div>
+            <div class="form-group">
+                <select name="role" id="userRole" required>
+                    <option value="" disabled selected hidden>Select role</option>
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="password" id="loginPassword" required>
+                <label>Password</label>
+            </div>
+            <div class="forgot-password">
+                <a href="#" onclick="showMessage('Password reset link sent to your email!', 'success')">Forgot Password?</a>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="btn">
+                    <span>Sign In</span>
+                </button>
+            </div>
+            <div class="switch-form">
+                <a onclick="switchToSignup()">Don't have an account? Sign up</a>
+            </div>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form class="form" id="signupForm">
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <input type="text" id="signupName" required>
+                <label>Full Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="signupEmail" required>
+                <label>Email Address</label>
+            </div>
+            <div class="form-group">
+                <select name="role" id="signUpRole" required>
+                    <option value="" disabled selected hidden>Select role</option>
+                    <option value="admin">admin</option>
+                    <option value="user">user</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="password" id="signupPassword" required>
+                <label>Password</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" required>
+                <label>Confirm Password</label>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn">
+                    <span>Sign Up</span>
+                </button>
+            </div>
+            <div class="switch-form">
+                <a onclick="switchToLogin()">Already have an account? Sign in</a>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
