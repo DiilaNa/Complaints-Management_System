@@ -98,5 +98,6 @@
         </form>
     </div>
 </div>
+<script src="javasript/LoginPage.js"></script>
 </body>
 </html>
