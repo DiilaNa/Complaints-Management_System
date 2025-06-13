@@ -1,4 +1,4 @@
-package lk.ijse.project.model.Dao;
+package lk.ijse.project.model.dao;
 
 import jakarta.servlet.ServletContext;
 import lk.ijse.project.model.Entity.User;
@@ -17,7 +17,7 @@ public class UserDAO {
     }
 
     public boolean createUser(User user) {
-        String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO users (id,name, email, password, role) VALUES (?,?, ?, ?, ?)";
         try (
                 Connection connection = dataSource.getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(sql)) {

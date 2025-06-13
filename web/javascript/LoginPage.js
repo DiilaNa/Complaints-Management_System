@@ -1,106 +1,113 @@
+$(document).ready(function () {
     let currentForm = 'login';
 
     function switchToSignup() {
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-
-    loginForm.classList.remove('active');
-    setTimeout(() => {
-    signupForm.classList.add('active');
-    currentForm = 'signup';
-}, 250);
-}
+        $('#loginForm').removeClass('active').fadeOut(200, function () {
+            $('#signupForm').fadeIn(200).addClass('active');
+            currentForm = 'signup';
+        });
+    }
 
     function switchToLogin() {
-    const loginForm = document.getElementById('loginForm');
-    const signupForm = document.getElementById('signupForm');
-
-    signupForm.classList.remove('active');
-    setTimeout(() => {
-    loginForm.classList.add('active');
-    currentForm = 'login';
-}, 250);
-}
-
-    function showMessage(text, type = 'success') {
-    const message = document.getElementById('message');
-    message.textContent = text;
-    message.className = `message ${type}`;
-    message.classList.add('show');
-
-    setTimeout(() => {
-    message.classList.remove('show');
-}, 3000);
-}
+        $('#signupForm').removeClass('active').fadeOut(200, function () {
+            $('#loginForm').fadeIn(200).addClass('active');
+            currentForm = 'login';
+        });
+    }
 
     function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
 
     function validatePassword(password) {
-    return password.length >= 6;
-}
+        return password.length >= 6;
+    }
 
-    // Handle login form submission
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    // Event handlers for switching forms (assuming you have anchors or buttons with these IDs)
+    $('#switchToSignup').click(function (e) {
+        e.preventDefault();
+        switchToSignup();
+    });
 
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
+    $('#switchToLogin').click(function (e) {
+        e.preventDefault();
+        switchToLogin();
+    });
 
-    if (!validateEmail(email)) {
-    showMessage('Please enter a valid email address', 'error');
-    return;
-}
+    // Login form submission
+    $('#loginForm').submit(function (e) {
+        e.preventDefault();
 
-    if (!validatePassword(password)) {
-    showMessage('Password must be at least 6 characters long', 'error');
-    return;
-}
+        const email = $('#loginEmail').val();
+        const password = $('#loginPassword').val();
 
-    // Simulate login process
-    showMessage('Signing in...', 'success');
-    setTimeout(() => {
-    showMessage('Welcome back! Login successful.', 'success');
-}, 1500);
-});
+        if (!validateEmail(email)) {
+            Swal.fire('Invalid Email', 'Please enter a valid email address', 'error');
+            return;
+        }
 
-    // Handle signup form submission
-    document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+        if (!validatePassword(password)) {
+            Swal.fire('Invalid Password', 'Password must be at least 6 characters long', 'error');
+            return;
+        }
 
-    const name = document.getElementById('signupName').value;
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
+        // Simulate login process
+        Swal.fire({
+            title: 'Signing in...',
+            timer: 1500,
+            didOpen: () => {
+                Swal.showLoading();
+            }
+        }).then(() => {
+            Swal.fire('Success', 'Welcome back! Login successful.', 'success');
+            // Here you can submit the form to the server or redirect
+            // this.submit(); // if you want to submit
+        });
+    });
 
-    if (name.trim().length < 2) {
-    showMessage('Please enter your full name', 'error');
-    return;
-}
+    // Signup form submission
+    $('#signupForm').submit(function (e) {
+        e.preventDefault();
 
-    if (!validateEmail(email)) {
-    showMessage('Please enter a valid email address', 'error');
-    return;
-}
+        const name = $('#signupName').val().trim();
+        const email = $('#signupEmail').val();
+        const password = $('#signupPassword').val();
+        const confirmPassword = $('#confirmPassword').val();
 
-    if (!validatePassword(password)) {
-    showMessage('Password must be at least 6 characters long', 'error');
-    return;
-}
+        if (name.length < 2) {
+            Swal.fire('Invalid Name', 'Please enter your full name', 'error');
+            return;
+        }
 
-    if (password !== confirmPassword) {
-    showMessage('Passwords do not match', 'error');
-    return;
-}
+        if (!validateEmail(email)) {
+            Swal.fire('Invalid Email', 'Please enter a valid email address', 'error');
+            return;
+        }
 
-    // Simulate signup process
-    showMessage('Creating account...', 'success');
-    setTimeout(() => {
-    showMessage('Account created successfully! Welcome aboard.', 'success');
-    setTimeout(() => {
-    switchToLogin();
-}, 2000);
-}, 1500);
+        if (!validatePassword(password)) {
+            Swal.fire('Invalid Password', 'Password must be at least 6 characters long', 'error');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            Swal.fire('Password Mismatch', 'Passwords do not match', 'error');
+            return;
+        }
+
+        // Simulate signup process
+        Swal.fire({
+            title: 'Creating account...',
+            timer: 1500,
+            didOpen: () => Swal.showLoading()
+        }).then(() => {
+            Swal.fire('Success', 'Account created successfully! Welcome aboard.', 'success');
+            // Switch to login after delay
+            setTimeout(() => {
+                switchToLogin();
+            }, 2000);
+            // Here you can submit the form to the server or do actual signup
+            // this.submit();
+        });
+    });
 });

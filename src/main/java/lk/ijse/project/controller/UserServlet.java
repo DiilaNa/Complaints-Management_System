@@ -5,12 +5,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lk.ijse.project.model.dao.UserDAO;
 import lk.ijse.project.model.Entity.User;
-import lk.ijse.project.model.Dao.UserDAO;
 
 import java.io.IOException;
 
-@WebServlet("/dilan")
+@WebServlet("/register")
 public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
