@@ -11,6 +11,7 @@ public class Complaints {
     private int cid;
     private String subject;
     private String description;
+    private String status;
     private String date;
     private String userId;
 }

@@ -23,7 +23,7 @@ public class UserDAO {
                 Connection connection = dataSource.getConnection();
                 PreparedStatement pstmt = connection.prepareStatement(sql)) {
 
-            pstmt.setString(1, UUID.randomUUID().toString());
+            pstmt.setString(1, user.getId());
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.setString(4, user.getPassword());
@@ -48,6 +48,7 @@ public class UserDAO {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return new User(
+                        rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("email"),
                         rs.getString("password"),

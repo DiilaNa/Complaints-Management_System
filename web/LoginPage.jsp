@@ -24,12 +24,10 @@
         <form class="form active" id="loginForm" action="signIn" method="post">
             <h2>Welcome Back</h2>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute for proper label animation -->
                 <input type="email" id="loginEmail" name="email" required placeholder=" ">
                 <label for="loginEmail">Email Address</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Removed default selected value, added proper structure -->
                 <select name="role" id="userRole" required>
                     <option value="" disabled selected></option>
                     <option value="admin">Admin</option>
@@ -38,7 +36,6 @@
                 <label for="userRole">User Role</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute -->
                 <input type="password" id="loginPassword" name="password" required placeholder=" ">
                 <label for="loginPassword">Password</label>
             </div>
@@ -59,17 +56,14 @@
         <form class="form" id="signupForm" action="register" method="post">
             <h2>Create Account</h2>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute -->
                 <input type="text" id="signupName" name="name" required placeholder=" ">
                 <label for="signupName">Full Name</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute -->
                 <input type="email" id="signupEmail" name="email" required placeholder=" ">
                 <label for="signupEmail">Email Address</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Moved label after select, removed default selected value -->
                 <select name="role" id="signUpRole" required>
                     <option value="" disabled selected></option>
                     <option value="admin">Admin</option>
@@ -78,12 +72,10 @@
                 <label for="signUpRole">User Role</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute -->
                 <input type="password" id="signupPassword" name="password" required placeholder=" ">
                 <label for="signupPassword">Password</label>
             </div>
             <div class="form-group">
-                <!-- FIXED: Added placeholder attribute -->
                 <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" ">
                 <label for="confirmPassword">Confirm Password</label>
             </div>
