@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>User</title>
+    <link rel="stylesheet" href="css/UserDashBoard.css">
 </head>
 <body>
 <div class="dashboard-container">
