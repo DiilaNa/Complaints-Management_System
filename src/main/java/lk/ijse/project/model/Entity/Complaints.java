@@ -8,8 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Complaints {
-    private int id;
-    private String title;
+    private int cid;
+    private String subject;
     private String description;
     private String date;
+    private String userId;
 }
