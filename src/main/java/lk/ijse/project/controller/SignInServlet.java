@@ -30,6 +30,7 @@ public class SignInServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
+            session.setAttribute("userID" , user.getId());
 
             if ("admin".equals(role)) {
                 resp.sendRedirect("AdminDashBoard.jsp");
@@ -37,8 +38,6 @@ public class SignInServlet extends HttpServlet {
                 resp.sendRedirect("UserDashBoard.jsp");
             }
         } else {
-            /*req.setAttribute("error", "Invalid email, password or role");
-            req.getRequestDispatcher("LoginPage.jsp").forward(req, resp);*/
             resp.sendRedirect("LoginPage.jsp?failed=true");
         }
     }

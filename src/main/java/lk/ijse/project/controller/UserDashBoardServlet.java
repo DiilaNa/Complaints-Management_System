@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lk.ijse.project.model.Entity.Complaints;
 import lk.ijse.project.model.dao.ComplaintsDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -24,7 +25,8 @@ public class UserDashBoardServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String subject = req.getParameter("subject");
         String description = req.getParameter("description");
-        String userId = (String) req.getSession().getAttribute("user_id");
+        HttpSession session = req.getSession(false);
+        String userId = (String) session.getAttribute("userID");
 
         if (subject == null || subject.isBlank() || userId == null) {
             req.setAttribute("error", "Subject or User ID is missing.");
@@ -42,7 +44,6 @@ public class UserDashBoardServlet extends HttpServlet {
             resp.sendRedirect("UserDashBoard.jsp");
         } else {
             req.setAttribute("error", "Failed to submit complaint. Try again.");
-            /*req.getRequestDispatcher("/complaint-form.jsp").forward(req, resp);*/
         }
     }
 

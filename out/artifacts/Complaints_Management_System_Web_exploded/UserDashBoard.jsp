@@ -58,11 +58,6 @@
         <form method="post" action="userDashboard">
             <input type="text" name="subject" placeholder="Subject" required>
             <textarea name="description" placeholder="Describe your complaint" required></textarea>
-            <select name="status">
-                <option value="pending">Pending</option>
-                <option value="in-progress">In Progress</option>
-                <option value="resolved">Resolved</option>
-            </select>
             <div class="modal-footer">
                 <button type="button" class="btn-secondary" onclick="document.getElementById('complaintModal').style.display='none'">Cancel</button>
                 <button type="submit" class="btn-primary">Add</button>
