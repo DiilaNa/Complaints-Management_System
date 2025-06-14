@@ -36,6 +36,7 @@ public class ComplaintsDAO {
         return false;
     }
     public List<Complaints> getComplaintsByUserId(String userId) {
+        System.out.println("inside getComplaintsByUserId: " + userId);
         List<Complaints> list = new ArrayList<>();
         String sql = "SELECT cid, subject, description, status, complaint_date FROM complaint WHERE user_id = ?";
 
@@ -48,18 +49,17 @@ public class ComplaintsDAO {
 
             while (rs.next()) {
                 Complaints c = new Complaints();
-                c.setCid(rs.getInt("cid"));
+                c.setCid(rs.getString("cid"));
                 c.setSubject(rs.getString("subject"));
                 c.setDescription(rs.getString("description"));
                 c.setStatus(rs.getString("status"));
                 c.setDate(rs.getString("complaint_date"));
+                c.setUserId(userId);
                 list.add(c);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return list;
     }
-
 }

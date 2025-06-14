@@ -22,7 +22,6 @@ public class Db implements ServletContextListener {
 
         ServletContext sc = sce.getServletContext();
         sc.setAttribute("ds", ds);
-
     }
 
     @Override

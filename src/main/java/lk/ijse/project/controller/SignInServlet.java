@@ -33,9 +33,9 @@ public class SignInServlet extends HttpServlet {
             session.setAttribute("userID" , user.getId());
 
             if ("admin".equals(role)) {
-                resp.sendRedirect("AdminDashBoard.jsp");
+                resp.sendRedirect("");
             } else {
-                resp.sendRedirect("UserDashBoard.jsp");
+                resp.sendRedirect("userDashboard");
             }
         } else {
             resp.sendRedirect("LoginPage.jsp?failed=true");

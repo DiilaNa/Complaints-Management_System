@@ -11,6 +11,7 @@ import lk.ijse.project.model.dao.ComplaintsDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/userDashboard")
 public class UserDashBoardServlet extends HttpServlet {
@@ -41,7 +42,7 @@ public class UserDashBoardServlet extends HttpServlet {
 
         boolean result = complaintsDAO.addComplaint(complaint);
         if (result) {
-            resp.sendRedirect("UserDashBoard.jsp");
+            resp.sendRedirect("userDashboard");
         } else {
             req.setAttribute("error", "Failed to submit complaint. Try again.");
         }
@@ -49,6 +50,14 @@ public class UserDashBoardServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        HttpSession session = req.getSession(false);
+        if (session != null && session.getAttribute("userID") != null) {
+            String userId = (String) session.getAttribute("userID");
+            List<Complaints> complaintsList = complaintsDAO.getComplaintsByUserId(userId);
+            req.setAttribute("complaintsList", complaintsList);
+            req.getRequestDispatcher("/UserDashBoard.jsp").forward(req, resp);
+        } else {
+            resp.sendRedirect("loginPage.jsp");
+        }
     }
 }

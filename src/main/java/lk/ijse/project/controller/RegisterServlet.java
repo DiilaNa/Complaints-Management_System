@@ -36,7 +36,5 @@ public class RegisterServlet extends HttpServlet {
         } else {
             resp.sendRedirect("LoginPage.jsp?error=true");
         }
-
     }
-
 }

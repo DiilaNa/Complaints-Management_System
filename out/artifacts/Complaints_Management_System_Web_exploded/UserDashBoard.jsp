@@ -1,4 +1,5 @@
-<%--
+<%@ page import="lk.ijse.project.model.Entity.Complaints" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: liyan
   Date: 6/14/2025
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--tags--%>
 <html>
 <head>
     <title>User</title>
@@ -38,15 +40,44 @@
     <table>
         <thead>
         <tr>
-            <th>#</th>
             <th>Topic</th>
             <th>Description</th>
             <th>Date</th>
             <th>Status</th>
         </tr>
         </thead>
-        <tbody id="complaintTable">
-
+       <%-- <tbody>
+        <c:forEach var="c" items="${complaintsList}">
+            <tr>
+                <td>${c.subject}</td>
+                <td>${c.description}</td>
+                <td>${c.date}</td>
+                <td>${c.status}</td>
+            </tr>
+        </c:forEach>
+        </tbody>--%>
+        <tbody>
+        <%
+            List<Complaints> list = (List<Complaints>) request.getAttribute("complaintsList");
+            if (list != null && !list.isEmpty()) {
+                for (Complaints c : list) {
+        %>
+        <tr>
+            <td><%= c.getSubject() %></td>
+            <td><%= c.getDescription() %></td>
+            <td><%= c.getDate() %></td>
+            <td><%= c.getStatus() %></td>
+        </tr>
+        <%
+            }
+        } else {
+        %>
+        <tr>
+            <td colspan="4">No complaints found.</td>
+        </tr>
+        <%
+            }
+        %>
         </tbody>
     </table>
 </div>
