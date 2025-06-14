@@ -36,13 +36,14 @@ public class UserDAO {
         return false;
     }
 
-    public User authenticateUser(String email, String password) {
-        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+    public User getUserIfExists(String email, String password, String role) {
+        String sql = "SELECT * FROM users WHERE email = ? AND password = ? AND role = ?";
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, email);
             pstmt.setString(2, password);
+            pstmt.setString(3, role);
 
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {

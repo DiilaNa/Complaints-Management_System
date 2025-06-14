@@ -22,22 +22,24 @@ public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
+        String role = req.getParameter("role");
+
         UserDAO userDAO = new UserDAO(getServletContext());
-        User user = userDAO.authenticateUser(email, password);
+        User user = userDAO.getUserIfExists(email, password, role);
 
         if (user != null) {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
 
-            if ("admin".equals(user.getRole())) {
-                resp.sendRedirect("admin-dashboard");
-
+            if ("admin".equals(role)) {
+                resp.sendRedirect("AdminDashBoard.jsp");
             } else {
-                resp.sendRedirect("employee-dashboard");
+                resp.sendRedirect("UserDashBoard.jsp");
             }
         } else {
-            req.setAttribute("error", "Invalid email or password");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            /*req.setAttribute("error", "Invalid email, password or role");
+            req.getRequestDispatcher("LoginPage.jsp").forward(req, resp);*/
+            resp.sendRedirect("LoginPage.jsp?failed=true");
         }
     }
 }

@@ -1,14 +1,12 @@
 function switchToSignup() {
     $('#loginForm').removeClass('active').fadeOut(200, function () {
         $('#signupForm').fadeIn(200).addClass('active');
-        currentForm = 'signup';
     });
 }
 
 function switchToLogin() {
     $('#signupForm').removeClass('active').fadeOut(200, function () {
         $('#loginForm').fadeIn(200).addClass('active');
-        currentForm = 'login';
     });
 }
 
@@ -22,8 +20,6 @@ function validatePassword(password) {
 }
 
 $(document).ready(function () {
-    let currentForm = 'login';
-
     $('#signupForm').submit(function (e) {
         const name = $('#signupName').val().trim();
         const email = $('#signupEmail').val();
@@ -55,35 +51,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#loginForm').submit(function (e) {
-        const email = $('#loginEmail').val();
-        const password = $('#loginPassword').val();
-
-        if (!validateEmail(email)) {
-            Swal.fire('Invalid Email', 'Please enter a valid email address', 'error');
-            e.preventDefault();
-            return;
-        }
-
-        if (!validatePassword(password)) {
-            Swal.fire('Invalid Password', 'Password must be at least 6 characters long', 'error');
-            e.preventDefault();
-            return;
-        }
-
-        Swal.fire({
-            title: 'Signing in...',
-            didOpen: () => Swal.showLoading(),
-            timer: 800,
-            showConfirmButton: false
-        });
-
-        e.preventDefault();
-        setTimeout(() => {
-            $('#loginForm')[0].submit();
-        }, 800);
-    });
-
     $('#switchToSignup').click(function (e) {
         e.preventDefault();
         switchToSignup();
@@ -110,6 +77,13 @@ $(document).ready(function () {
             icon: 'error',
             title: 'Registration Failed',
             text: 'Something went wrong. Try a different email.',
+        });
+    }
+    if (urlParams.get('failed')==='true'){
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Something went wrong. Add Correct Credentials.',
         });
     }
 });
