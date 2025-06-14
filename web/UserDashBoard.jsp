@@ -55,8 +55,8 @@
 <div class="modal" id="complaintModal">
     <div class="modal-content">
         <h3>Add New Complaint</h3>
-        <form method="post" action="add-complaint">
-            <input type="text" name="topic" placeholder="Topic" required>
+        <form method="post" action="userDashboard">
+            <input type="text" name="subject" placeholder="Subject" required>
             <textarea name="description" placeholder="Describe your complaint" required></textarea>
             <select name="status">
                 <option value="pending">Pending</option>
