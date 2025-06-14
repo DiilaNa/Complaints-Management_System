@@ -38,7 +38,6 @@
     <table>
         <thead>
         <tr>
-            <th>#</th>
             <th>Topic</th>
             <th>Description</th>
             <th>Date</th>
