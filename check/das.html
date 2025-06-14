@@ -3,10 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to right, #6dd5fa, #2980b9);
+            color: #333;
+            padding: 40px 0;
+        }
+
+        .dashboard-container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .dashboard-header h2 {
+            color: #2980b9;
+        }
+
+        .sign-out-btn {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat {
+            flex: 1;
+            background: #3498db;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .stat span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .add-btn {
+            background: #27ae60;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #f4f4f4;
+        }
+
+        /* Modal (optional, still kept basic) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .modal-content input, .modal-content textarea, .modal-content select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .modal-footer {
+            text-align: right;
+        }
+
+        .modal-footer button {
+            padding: 8px 16px;
+            border: none;
+            margin-left: 10px;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #7f8c8d;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h2>User Dashboard</h2>
+        <form action="logout" method="post">
+            <button class="sign-out-btn" type="submit">Sign Out</button>
+        </form>
+    </div>
 
+    <div class="stats">
+        <div class="stat">
+            <span id="totalComplaints">0</span>
+            Total Complaints
+        </div>
+        <div class="stat">
+            <span id="pendingComplaints">0</span>
+            Pending
+        </div>
+    </div>
+
+    <button class="add-btn" onclick="document.getElementById('complaintModal').style.display='flex'">
+        + Add Complaint
+    </button>
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Topic</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody id="complaintTable">
+        <!-- Complaint rows will go here -->
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="complaintModal">
+    <div class="modal-content">
+        <h3>Add New Complaint</h3>
+        <form method="post" action="add-complaint">
+            <input type="text" name="topic" placeholder="Topic" required>
+            <textarea name="description" placeholder="Describe your complaint" required></textarea>
+            <select name="status">
+                <option value="pending">Pending</option>
+                <option value="in-progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+            </select>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="document.getElementById('complaintModal').style.display='none'">Cancel</button>
+                <button type="submit" class="btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 <script>
     // Close modal when clicking outside content
