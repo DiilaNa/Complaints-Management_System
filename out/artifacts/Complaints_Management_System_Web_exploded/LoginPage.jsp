@@ -16,22 +16,12 @@
 </head>
 <body>
 <!-- Floating particles -->
-<div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-<div class="particle" style="left: 20%; animation-delay: 1s;"></div>
-<div class="particle" style="left: 30%; animation-delay: 2s;"></div>
-<div class="particle" style="left: 40%; animation-delay: 3s;"></div>
-<div class="particle" style="left: 50%; animation-delay: 4s;"></div>
-<div class="particle" style="left: 60%; animation-delay: 5s;"></div>
-<div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
-<div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-<div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
-
 <div class="container">
     <div class="message" id="message"></div>
 
     <div class="form-container">
         <!-- Login Form -->
-        <form class="form active" id="loginForm" a>
+        <form class="form active" id="loginForm" action="signIn" method="post">
             <h2>Welcome Back</h2>
             <div class="form-group">
                 <input type="email" id="loginEmail" name="email" required>
@@ -100,7 +90,20 @@
             </div>
         </form>
     </div>
+
 </div>
+<div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+<div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+<div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+<div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+<div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+<div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+<div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+<div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+
+<div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="javascript/LoginPage.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

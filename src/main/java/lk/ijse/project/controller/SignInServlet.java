@@ -5,36 +5,39 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lk.ijse.project.model.dao.UserDAO;
+import jakarta.servlet.http.HttpSession;
 import lk.ijse.project.model.Entity.User;
+import lk.ijse.project.model.dao.UserDAO;
 
 import java.io.IOException;
 
-@WebServlet("/register")
-public class UserServlet extends HttpServlet {
+@WebServlet("/signIn")
+public class SignInServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        String role = req.getParameter("role");
-
-        System.out.println(name + email + password + role);
-
-        User user = new User(name, email, password, role);
-        System.out.println(user);
         UserDAO userDAO = new UserDAO(getServletContext());
-        boolean success = userDAO.createUser(user);
+        User user = userDAO.authenticateUser(email, password);
 
-        if (success) {
-            System.out.println("User successfully saved");
+        if (user != null) {
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+
+            if ("admin".equals(user.getRole())) {
+                resp.sendRedirect("admin-dashboard");
+
+            } else {
+                resp.sendRedirect("employee-dashboard");
+            }
         } else {
-            resp.sendRedirect("register.jsp?error=true");
+            req.setAttribute("error", "Invalid email or password");
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }
-
 }
