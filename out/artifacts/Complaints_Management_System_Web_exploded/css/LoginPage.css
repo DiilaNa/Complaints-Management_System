@@ -59,11 +59,10 @@ body {
     margin-bottom: 30px;
 }
 
-
 .form-group input,
 .form-group select {
     width: 100%;
-    padding: 15px 0;
+    padding: 15px 5px 15px 5px;
     font-size: 16px;
     color: #fff;
     border: none;
@@ -72,6 +71,8 @@ body {
     background: transparent;
     transition: all 0.3s ease;
     appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .form-group input:focus,
@@ -80,93 +81,62 @@ body {
     box-shadow: 0 2px 10px rgba(3, 233, 244, 0.3);
 }
 
-.form-group input:valid,
-.form-group select:valid {
+
+.form-group input:not(:placeholder-shown),
+.form-group select:not([value=""]):valid {
     border-bottom-color: #00f369;
 }
 
-.form-group input ~ label {
+.form-group label {
     position: absolute;
     top: 15px;
-    left: 0;
+    left: 5px;
     font-size: 16px;
     color: rgba(255, 255, 255, 0.7);
     pointer-events: none;
     transition: all 0.3s ease;
+    z-index: 1;
 }
-
-/* Always keep label for select at the top */
-.form-group select ~ label {
-    top: -10px;
-    font-size: 12px;
-    color: #03e9f4;
-    font-weight: 500;
-}
-
 
 .form-group input:focus ~ label,
-.form-group input:valid ~ label {
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group select:focus ~ label,
+.form-group select:not([value=""]):valid ~ label {
     top: -10px;
     font-size: 12px;
     color: #03e9f4;
     font-weight: 500;
 }
 
-.form-group input:valid ~ label,
-.form-group select:valid ~ label {
+.form-group input:not(:placeholder-shown):valid ~ label,
+.form-group select:not([value=""]):valid ~ label {
     color: #00f369;
 }
 
+
 .form-group select {
-    width: 100%;
-    padding: 15px 0 15px 5px; /* added left padding for text */
-    font-size: 16px;
-    color: #fff;
-    border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-    outline: none;
-    background: transparent;
-    transition: all 0.3s ease;
-    appearance: none; /* hide default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
+    cursor: pointer;
 }
 
 .form-group select option {
-    color: #000; /* dropdown options readable */
+    color: #000;
+    background: #fff;
 }
 
-/*    .form-group::after {
-      content: '▼';
-      position: absolute;
-      top: 18px;
-      right: 10px;
-      color: rgba(255, 255, 255, 0.6);
-      pointer-events: none;
-      font-size: 12px;
-    }*/
-
-.form-group select:focus {
-    border-bottom-color: #03e9f4;
-    box-shadow: 0 2px 10px rgba(3, 233, 244, 0.3);
+input:-webkit-autofill {
+    background: transparent !important;
+    -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+    -webkit-text-fill-color: #fff !important;
+    border-bottom-color: #00f369 !important;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
-.form-group select:valid {
-    border-bottom-color: #00f369;
+input:-webkit-autofill ~ label {
+    top: -10px !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    color: #00f369 !important;
 }
-
-.form-group select:focus ~ label,
-.form-group select:valid ~ label {
-    top: -10px;
-    font-size: 12px;
-    color: #03e9f4;
-    font-weight: 500;
-}
-
-.form-group select:valid ~ label {
-    color: #00f369;
-}
-
 
 .button-group {
     display: flex;

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<!-- Floating particles -->
+
 <div class="container">
     <div class="message" id="message"></div>
 
@@ -24,19 +24,23 @@
         <form class="form active" id="loginForm" action="signIn" method="post">
             <h2>Welcome Back</h2>
             <div class="form-group">
-                <input type="email" id="loginEmail" name="email" required>
-                <label>Email Address</label>
+                <!-- FIXED: Added placeholder attribute for proper label animation -->
+                <input type="email" id="loginEmail" name="email" required placeholder=" ">
+                <label for="loginEmail">Email Address</label>
             </div>
             <div class="form-group">
+                <!-- FIXED: Removed default selected value, added proper structure -->
                 <select name="role" id="userRole" required>
-                    <option value="" disabled selected hidden>Select role</option>
-                    <option value="admin">admin</option>
-                    <option value="user">user</option>
+                    <option value="" disabled selected></option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                 </select>
+                <label for="userRole">User Role</label>
             </div>
             <div class="form-group">
-                <input type="password" id="loginPassword"  name="password" required>
-                <label>Password</label>
+                <!-- FIXED: Added placeholder attribute -->
+                <input type="password" id="loginPassword" name="password" required placeholder=" ">
+                <label for="loginPassword">Password</label>
             </div>
             <div class="forgot-password">
                 <a href="#" onclick="showMessage('Password reset link sent to your email!', 'success')">Forgot Password?</a>
@@ -55,27 +59,33 @@
         <form class="form" id="signupForm" action="register" method="post">
             <h2>Create Account</h2>
             <div class="form-group">
-                <input type="text" id="signupName" name="name" required>
-                <label>Full Name</label>
+                <!-- FIXED: Added placeholder attribute -->
+                <input type="text" id="signupName" name="name" required placeholder=" ">
+                <label for="signupName">Full Name</label>
             </div>
             <div class="form-group">
-                <input type="email" id="signupEmail" name="email" required>
-                <label>Email Address</label>
+                <!-- FIXED: Added placeholder attribute -->
+                <input type="email" id="signupEmail" name="email" required placeholder=" ">
+                <label for="signupEmail">Email Address</label>
             </div>
             <div class="form-group">
+                <!-- FIXED: Moved label after select, removed default selected value -->
                 <select name="role" id="signUpRole" required>
-                    <option value="" disabled selected hidden>Select role</option>
-                    <option value="admin">admin</option>
-                    <option value="user">user</option>
+                    <option value="" disabled selected></option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                 </select>
+                <label for="signUpRole">User Role</label>
             </div>
             <div class="form-group">
-                <input type="password" id="signupPassword" name="password" required>
-                <label>Password</label>
+                <!-- FIXED: Added placeholder attribute -->
+                <input type="password" id="signupPassword" name="password" required placeholder=" ">
+                <label for="signupPassword">Password</label>
             </div>
             <div class="form-group">
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-                <label>Confirm Password</label>
+                <!-- FIXED: Added placeholder attribute -->
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" ">
+                <label for="confirmPassword">Confirm Password</label>
             </div>
 
             <div class="button-group">
@@ -84,14 +94,13 @@
                 </button>
             </div>
             <div class="switch-form">
-
                 <a href="#" id="switchToLogin">Already have an account? Sign in</a>
-
             </div>
         </form>
     </div>
-
 </div>
+
+<!-- Floating particles -->
 <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
 <div class="particle" style="left: 20%; animation-delay: 1s;"></div>
 <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
@@ -100,7 +109,6 @@
 <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
 <div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
 <div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
-
 <div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
 
 
