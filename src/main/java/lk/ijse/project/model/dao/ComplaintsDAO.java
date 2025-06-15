@@ -20,6 +20,31 @@ public class ComplaintsDAO {
     }
 
 
+    public  List<Complaints> getAll() {
+        List<Complaints> complaints = new ArrayList<>();
+
+        String sql = "SELECT c.cid, u.name AS user, c.subject, c.description, c.status, c.date " +
+                "FROM complaint c JOIN user u ON c.user_id = u.id";
+
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                Complaints complaint = new Complaints();
+                complaint.setSubject(rs.getString("subject"));
+                complaint.setDescription(rs.getString("description"));
+                complaint.setStatus(rs.getString("status"));
+                complaint.setDate(rs.getString("date"));
+                complaints.add(complaint);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return complaints;
+    }
 
     public boolean addComplaint(Complaints complaint) {
         String sql = "INSERT INTO complaint (cid, subject, description, user_id) VALUES (?, ?, ?, ?)";
