@@ -1,5 +1,6 @@
 package lk.ijse.project.model.dao;
 
+import jakarta.servlet.ServletContext;
 import lk.ijse.project.model.Entity.Complaints;
 
 import javax.sql.DataSource;
@@ -17,6 +18,8 @@ public class ComplaintsDAO {
     public ComplaintsDAO(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+
+
 
     public boolean addComplaint(Complaints complaint) {
         String sql = "INSERT INTO complaint (cid, subject, description, user_id) VALUES (?, ?, ?, ?)";
