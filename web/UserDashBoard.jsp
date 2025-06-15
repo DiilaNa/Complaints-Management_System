@@ -46,16 +46,6 @@
             <th>Status</th>
         </tr>
         </thead>
-       <%-- <tbody>
-        <c:forEach var="c" items="${complaintsList}">
-            <tr>
-                <td>${c.subject}</td>
-                <td>${c.description}</td>
-                <td>${c.date}</td>
-                <td>${c.status}</td>
-            </tr>
-        </c:forEach>
-        </tbody>--%>
         <tbody>
         <%
             List<Complaints> list = (List<Complaints>) request.getAttribute("complaintsList");

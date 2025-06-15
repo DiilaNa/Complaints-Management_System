@@ -93,7 +93,6 @@
                 </span>
                         </td>
                         <td class="action-buttons">
-                            <button class="action-btn btn-view" onclick="viewComplaint('<%= complaint.getId() %>')">👁️</button>
                             <%
                                 String status = complaint.getStatus();
                                 if ("pending".equalsIgnoreCase(status)) {

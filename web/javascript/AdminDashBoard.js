@@ -15,3 +15,14 @@ function filterComplaints(status) {
     document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
     document.querySelector(`.tab[onclick="filterComplaints('${status}')"]`).classList.add("active");
 }
+function updateStatus(id, status) {
+    $.post("updateStatus", { id: id, status: status }, function (response) {
+        if (response.trim() === "success") {
+            Swal.fire('Updated!', 'Complaint status updated.', 'success')
+                .then(() => location.reload());
+        } else {
+            Swal.fire('Error!', 'Failed to update status.', 'error');
+        }
+    });
+}
+

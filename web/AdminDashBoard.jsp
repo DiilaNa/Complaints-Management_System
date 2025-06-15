@@ -59,6 +59,7 @@
             <div class="section-header">
                 <h2 class="section-title">Complaint Management</h2>
                 <div class="filter-tabs">
+                    <div class="tab active" onclick="filterComplaints('all')">All</div>
                     <div class="tab" onclick="filterComplaints('pending')">Pending</div>
                     <div class="tab" onclick="filterComplaints('resolved')">Resolved</div>
                     <div class="tab" onclick="filterComplaints('rejected')">Rejected</div>
