@@ -1,16 +1,18 @@
 function filterComplaints(status) {
-    document.querySelectorAll("#complaintsTable tbody tr").forEach(row => {
-        const rowStatus = row.getAttribute("data-status");
+    $("#complaintsTable tbody tr").each(function () {
+        const rowStatus = $(this).data("status");
         if (status === "all" || rowStatus === status) {
-            row.style.display = "";
+            $(this).show();
         } else {
-            row.style.display = "none";
+            $(this).hide();
         }
     });
-
-    document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-    document.querySelector(`.tab[onclick="filterComplaints('${status}')"]`).classList.add("active");
+    $(".tab").removeClass("active");
+    $(`.tab`).filter(function () {
+        return $(this).attr("onclick") === `filterComplaints('${status}')`;
+    }).addClass("active");
 }
+
 function updateStatus(id, status) {
     $.post("updateStatus", { id: id, status: status }, function (response) {
         if (response.trim() === "success") {
@@ -41,3 +43,5 @@ function deleteComplaint(id) {
         }
     });
 }
+
+

@@ -1,24 +1,3 @@
-function switchToSignup() {
-    $('#loginForm').removeClass('active').fadeOut(200, function () {
-        $('#signupForm').fadeIn(200).addClass('active');
-    });
-}
-
-function switchToLogin() {
-    $('#signupForm').removeClass('active').fadeOut(200, function () {
-        $('#loginForm').fadeIn(200).addClass('active');
-    });
-}
-
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
-}
-
-function validatePassword(password) {
-    return password.length >= 6;
-}
-
 $(document).ready(function () {
     $('#signupForm').submit(function (e) {
         const name = $('#signupName').val().trim();
@@ -85,5 +64,36 @@ $(document).ready(function () {
             title: 'Login Failed',
             text: 'Something went wrong. Add Correct Credentials.',
         });
+    }
+});
+function switchToSignup() {
+    $('#loginForm').removeClass('active').fadeOut(200, function () {
+        $('#signupForm').fadeIn(200).addClass('active');
+    });
+}
+
+function switchToLogin() {
+    $('#signupForm').removeClass('active').fadeOut(200, function () {
+        $('#loginForm').fadeIn(200).addClass('active');
+    });
+}
+
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+function validatePassword(password) {
+    return password.length >= 6;
+}
+
+$(".toggle-password").click(function () {
+    let input = $($(this).attr("toggle"));
+    if (input.attr("type") === "password") {
+        input.attr("type", "text");
+        $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+    } else {
+        input.attr("type", "password");
+        $(this).removeClass("fa-eye-slash").addClass("fa-eye");
     }
 });

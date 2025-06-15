@@ -13,6 +13,19 @@ body {
     justify-content: center;
     align-items: center;
 }
+.password-group {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 12px;
+    color: white;
+}
 
 .container {
     position: relative;
@@ -239,6 +252,7 @@ input:-webkit-autofill ~ label {
 .message.error {
     background: rgba(255, 107, 107, 0.9);
 }
+/*--Styles for Toggle Password---*/
 
 /* Floating particles animation */
 .particle {

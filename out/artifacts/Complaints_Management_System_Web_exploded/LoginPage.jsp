@@ -11,8 +11,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Sign Up</title>
-    <link rel="stylesheet" href="css/LoginPage.css">
-
+    <link rel="stylesheet" href="css/LoginPage.css?v=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -35,9 +35,10 @@
                 </select>
                 <label for="userRole">User Role</label>
             </div>
-            <div class="form-group">
+            <div class="form-group password-group" id="pg">
                 <input type="password" id="loginPassword" name="password" required placeholder=" ">
                 <label for="loginPassword">Password</label>
+                <span id="tp" class="toggle-password fa fa-eye" toggle="#loginPassword"></span>
             </div>
             <div class="forgot-password">
                 <a href="#" onclick="showMessage('Password reset link sent to your email!', 'success')">Forgot Password?</a>
@@ -71,13 +72,16 @@
                 </select>
                 <label for="signUpRole">User Role</label>
             </div>
-            <div class="form-group">
+            <div class="form-group password-group">
                 <input type="password" id="signupPassword" name="password" required placeholder=" ">
                 <label for="signupPassword">Password</label>
+                <span class="toggle-password fa fa-eye" toggle="#signupPassword"></span>
             </div>
-            <div class="form-group">
-                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" ">
-                <label for="confirmPassword">Confirm Password</label>
+
+            <div class="form-group password-group">
+                <input type="password" id="confirmPassword" name="password" required placeholder=" ">
+                <label for="confirmPassword">Password</label>
+                <span class="toggle-password fa fa-eye" toggle="#confirmPassword"></span>
             </div>
 
             <div class="button-group">
@@ -105,7 +109,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="javascript/LoginPage.js"></script>
+<script src="javascript/LoginPage.js?v=1"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -1,7 +1,12 @@
-<!DOCTYPE html>
+<!--
+<!Doctype>
 <html lang="en">
 <head>
-    <title>Admin DashBoard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
+    <link rel="stylesheet" href="css/LoginPage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         * {
@@ -9,364 +14,407 @@
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            overflow: hidden;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .header h1 {
-            color: #2d3748;
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        .admin-badge {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a6f);
-            color: white;
-            padding: 8px 16px;
+            position: relative;
+            width: 400px;
+            min-height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
             border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            transition: all 0.6s ease;
         }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+
+        .form-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .form {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .form.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+            font-size: 2.2em;
+            font-weight: 300;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group {
+            position: relative;
             margin-bottom: 30px;
         }
-        .stat-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 15px 5px 15px 5px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            outline: none;
+            background: transparent;
+            transition: all 0.3s ease;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
         }
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-bottom-color: #03e9f4;
+            box-shadow: 0 2px 10px rgba(3, 233, 244, 0.3);
         }
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
+
+
+        .form-group input:not(:placeholder-shown),
+        .form-group select:not([value=""]):valid {
+            border-bottom-color: #00f369;
         }
-        .stat-label {
-            color: #4a5568;
-            font-size: 1rem;
+
+        .form-group label {
+            position: absolute;
+            top: 15px;
+            left: 5px;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .form-group input:focus ~ label,
+        .form-group input:not(:placeholder-shown) ~ label,
+        .form-group select:focus ~ label,
+        .form-group select:not([value=""]):valid ~ label {
+            top: -10px;
+            font-size: 12px;
+            color: #03e9f4;
             font-weight: 500;
         }
-        .total { color: #667eea; }
-        .pending { color: #f093fb; }
-        .resolved { color: #4facfe; }
-        .rejected { color: #ff6b6b; }
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
+
+        .form-group input:not(:placeholder-shown):valid ~ label,
+        .form-group select:not([value=""]):valid ~ label {
+            color: #00f369;
         }
-        .complaints-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            color: #000;
+            background: #fff;
+        }
+
+        input:-webkit-autofill {
+            background: transparent !important;
+            -webkit-box-shadow: 0 0 0 30px transparent inset !important;
+            -webkit-text-fill-color: #fff !important;
+            border-bottom-color: #00f369 !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        input:-webkit-autofill ~ label {
+            top: -10px !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: #00f369 !important;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #32e1b6, #00f369 50%, #00ddeb);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
-        .section-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 243, 105, 0.4);
         }
-        .section-title {
-            font-size: 1.4rem;
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn span {
+            display: block;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
-        }
-        .filter-tabs {
-            display: flex;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 4px;
-        }
-        .tab {
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .tab.active {
-            background: white;
-            color: #667eea;
-        }
-        .table-container {
-            overflow-x: auto;
-            max-height: 600px;
-            overflow-y: auto;
-        }
-        .complaints-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        .complaints-table th {
-            background: #f8fafc;
-            padding: 15px 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #2d3748;
-            border-bottom: 2px solid #e2e8f0;
-            position: sticky;
-            top: 0;
-            z-index: 10;
         }
 
-        .complaints-table td {
-            padding: 15px 12px;
-            border-bottom: 1px solid #e2e8f0;
-            vertical-align: top;
-        }
-
-        .complaints-table tr:hover {
-            background-color: #f7fafc;
-        }
-        .action-btn {
-            padding: 6px 8px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 32px;
-            height: 32px;
-        }
-
-        .btn-view {
-            background: #e6f3ff;
-            color: #0066cc;
-        }
-
-        .btn-resolve {
-            background: #e6fffa;
-            color: #38b2ac;
-        }
-
-        .btn-reject {
-            background: #fed7d7;
-            color: #e53e3e;
-        }
-
-        .btn-delete {
-            background: #fff5f5;
-            color: #c53030;
-        }
-
-        .btn-reopen {
-            background: #f0f4f8;
-            color: #4a5568;
-        }
-
-        .action-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .btn-view:hover {
-            background: #cce7ff;
-        }
-
-        .btn-resolve:hover {
-            background: #b3f5f0;
-        }
-
-        .btn-reject:hover {
-            background: #feb2b2;
-        }
-
-        .btn-delete:hover {
-            background: #fbb6ce;
-        }
-
-        .btn-reopen:hover {
-            background: #e2e8f0;
-        }
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-        }
-
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            body {
-                padding: 15px;
-            }
-
-            .header {
-                padding: 15px 20px;
-            }
-
-            .section-header {
-                padding: 15px 20px;
-            }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 60px 30px;
-            color: #a0aec0;
-        }
-
-        .empty-state h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-
-        .empty-state p {
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-        .action-buttons {
-            display: flex;           /* Arrange children in a row */
-            gap: 8px;                /* Optional: space between buttons */
-            justify-content: flex-start; /* Align to left, or center if you prefer */
-            align-items: center;     /* Vertically center buttons */
-        }
-
-        .action-buttons button {
-            /* Optional: fix button size to keep consistent */
-            padding: 4px 8px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
+        .btn:hover span {
             background: transparent;
+            color: #000;
         }
 
-       /* .sign-out-btn{
-            background-color: transparent;
-            border: none;
-            color: white;
-            font-size: 1rem;
-        }*/
-      /*  .admin-badge:hover{
-            background: #ff0059;
-        }*/
+        .switch-form {
+            text-align: center;
+            margin-top: 30px;
+        }
 
+        .switch-form a {
+            color: #03e9f4;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .switch-form a:hover {
+            color: #00f369;
+            text-shadow: 0 0 10px rgba(0, 243, 105, 0.5);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: 15px;
+        }
+
+        .forgot-password a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: #03e9f4;
+        }
+
+        .message {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 243, 105, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+            top: -50px;
+        }
+
+        .message.error {
+            background: rgba(255, 107, 107, 0.9);
+        }
+
+        /* Floating particles animation */
+        .particle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        .password-group {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 12px;
+            color: white;
+        }
 
     </style>
+
 </head>
 <body>
+
 <div class="container">
-    <div class="header">
-        <div class="header-content">
-            <h1>Admin Dashboard</h1>
-            <form  class="admin-badge" action="logout" method="post">
-                <button type="submit" class="sign-out-btn">Sign Out</button>
-            </form>
-        </div>
-    </div>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-number total"><%= total %></div>
-            <div class="stat-label">Total Complaints</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number pending"><%= pending %></div>
-            <div class="stat-label">Pending Review</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number resolved"><%= resolved %></div>
-            <div class="stat-label">Resolved</div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-number rejected"><%= rejected %></div>
-            <div class="stat-label">Rejected</div>
-        </div>
-    </div>
-    <div class="main-content">
-        <div class="complaints-section">
-            <div class="section-header">
-                <h2 class="section-title">Complaint Management</h2>
-                <div class="filter-tabs">
-                    <div class="tab active" onclick="filterComplaints('all')">All</div>
-                    <div class="tab" onclick="filterComplaints('pending')">Pending</div>
-                    <div class="tab" onclick="filterComplaints('resolved')">Resolved</div>
-                    <div class="tab" onclick="filterComplaints('rejected')">Rejected</div>
-                </div>
+    <div class="message" id="message"></div>
+
+    <div class="form-container">
+        &lt;!&ndash; Login Form &ndash;&gt;
+        <form class="form active" id="loginForm" action="signIn" method="post">
+            <h2>Welcome Back</h2>
+            <div class="form-group">
+                <input type="email" id="loginEmail" name="email" required placeholder=" ">
+                <label for="loginEmail">Email Address</label>
+            </div>
+            <div class="form-group">
+                <select name="role" id="userRole" required>
+                    <option value="" disabled selected></option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+                <label for="userRole">User Role</label>
+            </div>
+       &lt;!&ndash;     <div class="form-group">
+                <input type="password" id="loginPassword" name="password" required placeholder=" ">
+                <label for="loginPassword">Password</label>
+            </div>&ndash;&gt;
+            <div class="form-group password-group">
+                <input type="password" id="loginPassword" name="password" required placeholder=" ">
+                <label for="loginPassword">Password</label>
+                <span class="toggle-password fa fa-eye" toggle="#loginPassword"></span>
             </div>
 
-            <div class="table-container">
-                <table class="complaints-table" id="complaintsTable">
-                    <thead>
-                    <tr>
-                        <th>User</th>
-                        <th>Subject</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+
+            <div class="forgot-password">
+                <a href="#" onclick="showMessage('Password reset link sent to your email!', 'success')">Forgot Password?</a>
             </div>
-        </div>
+            <div class="button-group">
+                <button type="submit" class="btn">
+                    <span>Sign In</span>
+                </button>
+            </div>
+            <div class="switch-form">
+                <a href="#" id="switchToSignup">Don't have an account? Sign up</a>
+            </div>
+        </form>
+
+        &lt;!&ndash; Sign Up Form &ndash;&gt;
+        <form class="form" id="signupForm" action="register" method="post">
+            <h2>Create Account</h2>
+            <div class="form-group">
+                <input type="text" id="signupName" name="name" required placeholder=" ">
+                <label for="signupName">Full Name</label>
+            </div>
+            <div class="form-group">
+                <input type="email" id="signupEmail" name="email" required placeholder=" ">
+                <label for="signupEmail">Email Address</label>
+            </div>
+            <div class="form-group">
+                <select name="role" id="signUpRole" required>
+                    <option value="" disabled selected></option>
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+                <label for="signUpRole">User Role</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="signupPassword" name="password" required placeholder=" ">
+                <label for="signupPassword">Password</label>
+            </div>
+            <div class="form-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder=" ">
+                <label for="confirmPassword">Confirm Password</label>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn">
+                    <span>Sign Up</span>
+                </button>
+            </div>
+            <div class="switch-form">
+                <a href="#" id="switchToLogin">Already have an account? Sign in</a>
+            </div>
+        </form>
     </div>
 </div>
+
+&lt;!&ndash; Floating particles &ndash;&gt;
+<div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+<div class="particle" style="left: 20%; animation-delay: 1s;"></div>
+<div class="particle" style="left: 30%; animation-delay: 2s;"></div>
+<div class="particle" style="left: 40%; animation-delay: 3s;"></div>
+<div class="particle" style="left: 50%; animation-delay: 4s;"></div>
+<div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+<div class="particle" style="left: 70%; animation-delay: 0.5s;"></div>
+<div class="particle" style="left: 80%; animation-delay: 1.5s;"></div>
+<div class="particle" style="left: 90%; animation-delay: 2.5s;"></div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="javascript/AdminDashBoard.js"></script>
+<script src="javascript/LoginPage.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(".toggle-password").click(function () {
+        let input = $($(this).attr("toggle"));
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+            $(this).removeClass("fa-eye").addClass("fa-eye-slash");
+        } else {
+            input.attr("type", "password");
+            $(this).removeClass("fa-eye-slash").addClass("fa-eye");
+        }
+    });
+
+</script>
 </body>
 </html>
+-->
