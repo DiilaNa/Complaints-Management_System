@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>User</title>
-    <link rel="stylesheet" href="css/UserDashBoard.css">
+    <link rel="stylesheet" href="css/UserDashBoard.css?v=1">
 </head>
 <body>
 <div class="dashboard-container">
