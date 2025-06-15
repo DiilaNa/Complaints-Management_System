@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-
+    <link rel="stylesheet" href="css/ChangePassword.css">
 </head>
 <body>
 <div class="container">
