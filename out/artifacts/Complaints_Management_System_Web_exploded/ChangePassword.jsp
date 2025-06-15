@@ -1,8 +1,14 @@
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: liyan
+  Date: 6/15/2025
+  Time: 8:13 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reset Password - Complaint Management System</title>
+    <title>Title</title>
     <style>
         * {
             margin: 0;
@@ -213,10 +219,9 @@
         </div>
 
         <div class="back-link">
-            <a href="login.html">← Back to Login</a>
+            <a href="LoginPage.jsp">← Back to Login</a>
         </div>
     </form>
 </div>
-
 </body>
 </html>

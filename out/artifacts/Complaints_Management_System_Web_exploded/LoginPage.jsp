@@ -41,7 +41,7 @@
                 <span id="tp" class="toggle-password fa fa-eye" toggle="#loginPassword"></span>
             </div>
             <div class="forgot-password">
-                <a href="#" onclick="showMessage('Password reset link sent to your email!', 'success')">Forgot Password?</a>
+                <a href="ChangePassword.jsp" >Forgot Password?</a>
             </div>
             <div class="button-group">
                 <button type="submit" class="btn">
