@@ -60,4 +60,16 @@ public class UserDAO {
         }
         return null;
     }
+    public boolean resetPassword(String email, String newPassword) throws SQLException {
+        String sql = "UPDATE users SET password=? WHERE email=?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, newPassword);
+            stmt.setString(2, email);
+
+            int updated = stmt.executeUpdate();
+            return updated > 0;
+        }
+    }
 }
