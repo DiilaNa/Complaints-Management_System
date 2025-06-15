@@ -17,7 +17,7 @@ public class ResetPasswordServlet extends HttpServlet {
         String confirmPassword = req.getParameter("confirmPassword");
 
         if (!newPassword.equals(confirmPassword)) {
-            resp.sendRedirect("forgot-password.jsp?error=nomatch");
+            resp.sendRedirect("ChangePassword.jsp?error=nomatch");
             return;
         }
 
