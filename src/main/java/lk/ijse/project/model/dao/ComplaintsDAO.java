@@ -67,7 +67,6 @@ public class ComplaintsDAO {
         return false;
     }
     public List<Complaints> getComplaintsByUserId(String userId) {
-        System.out.println("inside getComplaintsByUserId: " + userId);
         List<Complaints> list = new ArrayList<>();
         String sql = "SELECT cid, subject, description, status, complaint_date FROM complaint WHERE user_id = ?";
 
@@ -92,5 +91,32 @@ public class ComplaintsDAO {
             e.printStackTrace();
         }
         return list;
+    }
+    public  boolean updateStatus(String id, String newStatus) {
+        String sql = "UPDATE complaint SET status = ? WHERE cid = ?";
+        try (
+                Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql))
+        {
+            pstmt.setString(1, newStatus);
+            pstmt.setString(2, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public  boolean deleteComplaint(String id) {
+        String sql = "DELETE FROM complaint WHERE cid = ?";
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
