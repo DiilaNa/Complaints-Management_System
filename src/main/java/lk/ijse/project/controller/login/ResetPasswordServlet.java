@@ -34,5 +34,4 @@ public class ResetPasswordServlet extends HttpServlet {
             resp.sendRedirect("ChangePassword.jsp?error=server");
         }
     }
-    }
 }

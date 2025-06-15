@@ -48,5 +48,12 @@
         </div>
     </form>
 </div>
+<script>
+    const resetStatus = "<%= request.getParameter("reset") != null ? request.getParameter("reset") : "" %>";
+    const errorStatus = "<%= request.getParameter("error") != null ? request.getParameter("error") : "" %>";
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="javascript/alerts.js"></script>
 </body>
 </html>
