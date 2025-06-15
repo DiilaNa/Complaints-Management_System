@@ -1,7 +1,3 @@
-$(document).ready(function () {
-
-});
-
 function filterComplaints(status) {
     document.querySelectorAll("#complaintsTable tbody tr").forEach(row => {
         const rowStatus = row.getAttribute("data-status");

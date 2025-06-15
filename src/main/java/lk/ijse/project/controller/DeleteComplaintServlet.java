@@ -5,7 +5,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import lk.ijse.project.model.dao.ComplaintsDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
-
 import java.io.IOException;
 
 @WebServlet("/deleteComplaint")

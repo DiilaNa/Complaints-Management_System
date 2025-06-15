@@ -7,7 +7,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.ijse.project.model.dao.UserDAO;
 import lk.ijse.project.model.Entity.User;
-
 import java.io.IOException;
 import java.util.UUID;
 

@@ -17,7 +17,7 @@
 <div class="dashboard-container">
     <div class="dashboard-header">
         <h2>User Dashboard</h2>
-        <form action="logout" method="post">
+        <form class="admin-badge" action="logout" method="post">
             <button class="sign-out-btn" type="submit">Sign Out</button>
         </form>
     </div>

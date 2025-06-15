@@ -11,16 +11,16 @@
 <head>
     <title>Admin DashBoard</title>
     <link rel="stylesheet" href="css/AdminDashBoard.css">
+
 </head>
 <body>
 <div class="container">
     <div class="header">
         <div class="header-content">
             <h1>Admin Dashboard</h1>
-            <div class="admin-badge">
-                <span>👨‍💼</span>
-                <span>Administrator</span>
-            </div>
+            <form  class="admin-badge" action="logout" method="post">
+                <button id="signOUT" type="submit" class="sign-out-btn">Sign Out</button>
+            </form>
         </div>
     </div>
 
