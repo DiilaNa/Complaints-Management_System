@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Admin DashBoard</title>
+    <link rel="stylesheet" href="css/AdminDashBoard.css">
 </head>
 <body>
 <div class="container">
@@ -71,5 +72,8 @@
         </div>
     </div>
 </div>
+<script src="javascript/AdminDashBoard.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
