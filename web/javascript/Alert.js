@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    if (resetStatus === "success") {
+    if (resetStatus === "ok") {
         Swal.fire({
             icon: 'success',
             title: 'Success!',
@@ -24,4 +24,12 @@ $(document).ready(function () {
             text: 'Something went wrong. Please try again later.'
         });
     }
+    $('.toggle-password').on('click', function () {
+        const targetId = $(this).data('target');
+        const input = $('#' + targetId);
+        const type = input.attr('type') === 'password' ? 'text' : 'password';
+        input.attr('type', type);
+        $(this).toggleClass('fa-eye fa-eye-slash');
+    });
 });
+

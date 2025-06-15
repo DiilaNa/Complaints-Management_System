@@ -25,7 +25,7 @@ public class ResetPasswordServlet extends HttpServlet {
             UserDAO userDAO = new UserDAO(getServletContext());
             boolean success = userDAO.resetPassword(email, newPassword);
             if (success) {
-                resp.sendRedirect("LoginPage.jsp?reset=success");
+                resp.sendRedirect("LoginPage.jsp?reset=ok");
             } else {
                 resp.sendRedirect("ChangePassword.jsp?error=notfound");
             }

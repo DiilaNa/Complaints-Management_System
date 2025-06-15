@@ -97,3 +97,5 @@ $(".toggle-password").click(function () {
         $(this).removeClass("fa-eye-slash").addClass("fa-eye");
     }
 });
+
+
