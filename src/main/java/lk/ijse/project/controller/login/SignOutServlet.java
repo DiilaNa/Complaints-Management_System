@@ -1,4 +1,4 @@
-package lk.ijse.project.controller;
+package lk.ijse.project.controller.login;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
