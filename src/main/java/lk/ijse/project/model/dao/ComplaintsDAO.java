@@ -1,6 +1,6 @@
 package lk.ijse.project.model.dao;
 
-import jakarta.servlet.ServletContext;
+import lk.ijse.project.model.Entity.AllComplaints;
 import lk.ijse.project.model.Entity.Complaints;
 
 import javax.sql.DataSource;
@@ -20,24 +20,27 @@ public class ComplaintsDAO {
     }
 
 
-    public  List<Complaints> getAll() {
-        List<Complaints> complaints = new ArrayList<>();
+    public List<AllComplaints> getAll() {
+        List<AllComplaints> complaints = new ArrayList<>();
 
-        String sql = "SELECT c.cid, u.name AS user, c.subject, c.description, c.status, c.date " +
-                "FROM complaint c JOIN user u ON c.user_id = u.id";
+        String sql = "SELECT c.cid, u.name , c.subject, c.description, c.status, c.complaint_date " +
+                "FROM complaint c JOIN users u ON c.user_id = u.id";
 
         try (Connection conn = dataSource.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
 
             while (rs.next()) {
-                Complaints complaint = new Complaints();
+                AllComplaints complaint = new AllComplaints();
+                complaint.setId(rs.getString("cid"));
+                complaint.setUserName(rs.getString("name"));
                 complaint.setSubject(rs.getString("subject"));
                 complaint.setDescription(rs.getString("description"));
                 complaint.setStatus(rs.getString("status"));
-                complaint.setDate(rs.getString("date"));
+                complaint.setDate(rs.getString("complaint_date")); // corrected!
                 complaints.add(complaint);
             }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

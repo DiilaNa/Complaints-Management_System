@@ -6,6 +6,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import lk.ijse.project.model.Entity.AllComplaints;
 import lk.ijse.project.model.Entity.Complaints;
 import lk.ijse.project.model.dao.ComplaintsDAO;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -14,7 +16,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-@WebServlet("/getAllComplaints")
+@WebServlet("/adminDashboard")
 public class AdminDashBoardServlet extends HttpServlet {
 
     private  ComplaintsDAO complaintsDAO;
@@ -27,15 +29,14 @@ public class AdminDashBoardServlet extends HttpServlet {
     }
 
     @Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-            response.setContentType("application/json");
-            List<Complaints> complaints = complaintsDAO.getAll();
-            ObjectMapper mapper = new ObjectMapper();
-            String json = mapper.writeValueAsString(complaints);
-
-            PrintWriter out = response.getWriter();
-            out.print(json);
-            out.flush();
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("role") != null && session.getAttribute("role").equals("admin")) {
+            List<AllComplaints> complaintsList = complaintsDAO.getAll();
+            request.setAttribute("complaintsList", complaintsList);
+            request.getRequestDispatcher("/AdminDashBoard.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("LoginPage.jsp");
         }
-
+    }
 }

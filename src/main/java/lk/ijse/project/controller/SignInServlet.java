@@ -31,9 +31,10 @@ public class SignInServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.setAttribute("user", user);
             session.setAttribute("userID" , user.getId());
+            session.setAttribute("role", role);
 
             if ("admin".equals(role)) {
-                resp.sendRedirect("");
+                resp.sendRedirect("adminDashboard");
             } else {
                 resp.sendRedirect("userDashboard");
             }
