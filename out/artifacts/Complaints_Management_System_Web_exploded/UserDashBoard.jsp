@@ -22,13 +22,24 @@
         </form>
     </div>
 
+    <%
+        List<Complaints> complaints = (List<Complaints>) request.getAttribute("complaintsList");
+        int total = 0 , pending = 0;
+        for (Complaints complaints1 : complaints){
+            total++;
+            String status = complaints1.getStatus();
+            if ("total".equalsIgnoreCase(status)) total++;
+            else if ("pending".equalsIgnoreCase(status)) pending++;
+        }
+    %>
+
     <div class="stats">
         <div class="stat">
-            <span id="totalComplaints">0</span>
+            <span id="totalComplaints total"><%= total %></span>
             Total Complaints
         </div>
         <div class="stat">
-            <span id="pendingComplaints">0</span>
+            <span id="pendingComplaints pending"><%= pending %></span>
             Pending
         </div>
     </div>
@@ -46,16 +57,6 @@
             <th>Status</th>
         </tr>
         </thead>
-       <%-- <tbody>
-        <c:forEach var="c" items="${complaintsList}">
-            <tr>
-                <td>${c.subject}</td>
-                <td>${c.description}</td>
-                <td>${c.date}</td>
-                <td>${c.status}</td>
-            </tr>
-        </c:forEach>
-        </tbody>--%>
         <tbody>
         <%
             List<Complaints> list = (List<Complaints>) request.getAttribute("complaintsList");

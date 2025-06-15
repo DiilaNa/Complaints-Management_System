@@ -38,19 +38,19 @@
     %>
     <div class="stats-grid">
         <div class="stat-card">
-            <div class="stat-number total">247</div>
+            <div class="stat-number total"><%= total %></div>
             <div class="stat-label">Total Complaints</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number pending">42</div>
+            <div class="stat-number pending"><%= pending %></div>
             <div class="stat-label">Pending Review</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number resolved">189</div>
+            <div class="stat-number resolved"><%= resolved %></div>
             <div class="stat-label">Resolved</div>
         </div>
         <div class="stat-card">
-            <div class="stat-number rejected">16</div>
+            <div class="stat-number rejected"><%= rejected %></div>
             <div class="stat-label">Rejected</div>
         </div>
     </div>
