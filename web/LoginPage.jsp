@@ -97,8 +97,6 @@
 </div>
 
 <!-- Floating particles -->
-<div class="particle" style="left: 10%; animation-delay: 0s;"></div>
-<div class="particle" style="left: 20%; animation-delay: 1s;"></div>
 <div class="particle" style="left: 30%; animation-delay: 2s;"></div>
 <div class="particle" style="left: 40%; animation-delay: 3s;"></div>
 <div class="particle" style="left: 50%; animation-delay: 4s;"></div>
